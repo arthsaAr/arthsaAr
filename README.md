@@ -1,5 +1,5 @@
 - 👋 Hi, I’m @arthsaAr
-- 👀 I’m interested in Full-Stack development
+- 👀 I’m interested in Software and game development
 - 🌱 I’m currently learning C++ programming language
 - 💞️ I’m looking to collaborate on some very basic projects
 
