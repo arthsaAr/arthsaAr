@@ -4,7 +4,7 @@
   <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDd5amo5dTdxaHFzNmU3MHRtYTVtejY3Zm82aDNlZ2xrZDRiMDA5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RtdRhc7TxBxB0YAsK6/giphy.gif" alt="Gaming GIF" width="250"/>
 </p>
 
-<h1 align="center">RQx Genix</h1>
+<h1 align="center">arthsaAr Guy</h1>
 <p align="center">🎮 Aspiring Software & Game Developer | Leveling up every day!</p>
 
 ---
@@ -53,13 +53,19 @@
 | 🧩 Maze Game 3D | Dynamic maze generation with pathfinding algorithms for a 3D-style maze adventure. | [Repo](https://github.com/arthsaAr/Mazegame-OpenGL-GLUT-3D-game) |
 
 ## 📊 Skill Mastery Level
-```
-Unity ▓▓▓▓▓▓▓▓ 80%
-OpenGL/GLUT ▓▓▓▓▓▓░░ 65%
-C++ ▓▓▓▓▓▓▓▓ 85%
-React.js ▓▓▓▓▓▓░░ 60%
-Python ▓▓▓▓▓▓░░ 65%
-```
+
+| Skill        | Mastery |
+|--------------|---------|
+| ☕ Java        | ▓▓▓▓▓▓▓▓▓ 90% |
+| 💻 C++         | ▓▓▓▓▓▓▓▓ 85% |
+| 🖼 OpenGL/GLUT | ▓▓▓▓▓▓▓░░ 80% |
+| 🐙 Git/GitHub  | ▓▓▓▓▓▓▓░░ 75% |
+| 🐧 Linux       | ▓▓▓▓▓▓▓░░ 75% |
+| 🗄 MySQL       | ▓▓▓▓▓▓░░░ 60% |
+| 🎮 Unity       | ▓▓▓▓▓▓░░ 60% |
+| 🌐 React Native    | ▓▓▓▓▓░░░░ 50% |
+| 🟦 TypeScript  | ▓▓▓░░░░░░ 40% |
+
 
 ## 📬 Contact & Connect
 
@@ -70,7 +76,7 @@ Python ▓▓▓▓▓▓░░ 65%
 
 ---
 
-## 🎮 Fun Fact / Motto
+## 🎮 Motto
 > "Exploring the world of code, defeating errors and leveling up, one commit at a time."
 
 ---
