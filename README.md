@@ -19,7 +19,7 @@
 ├─ Game Design
 ├─ 3D Rendering
 
-🌐 Web & Mobile
+🌐 Web & Mobile Development
 ├─ HTML / CSS
 ├─ React.js / React Native
 ├─ jQuery
