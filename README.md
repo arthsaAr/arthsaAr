@@ -43,7 +43,7 @@
 ├─ Block Ciphers & Public-Key systems
 ├─ Symmetric & Asymmetric Encryption
 
-📝 Programming Languages
+💻 Programming Languages
 ├─ C++, C#, Java, JavaScript, TypeScript
 
 🗄 Databases
