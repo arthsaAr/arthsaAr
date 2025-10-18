@@ -71,13 +71,15 @@
 | ☕ Java                 | ▓▓▓▓▓▓▓▓▓ 90% |
 | 💻 C++                  | ▓▓▓▓▓▓▓▓ 85% |
 | 🖼 OpenGL / GLUT         | ▓▓▓▓▓▓▓░░ 80% |
+| 🧩 HTML                 | ▓▓▓▓▓▓▓░░ 75% |
 | 🧠 Game Design           | ▓▓▓▓▓▓░░░ 75% |
 | 🐧 Linux                | ▓▓▓▓▓▓░░░ 70% |
 | 🐙 Git / GitHub          | ▓▓▓▓▓▓░░░ 70% |
+| 🎨 CSS                  | ▓▓▓▓▓▓░░░ 65% |
 | 🗄 MySQL                | ▓▓▓▓▓░░░░ 60% |
 | 🎮 Unity                | ▓▓▓▓▓░░░░ 60% |
-| 🔐 Cryptography          | ▓▓▓▓░░░░░ 50% |
 | 🌐 React Native          | ▓▓▓▓░░░░░ 50% |
+| 🔐 Cryptography          | ▓▓▓▓░░░░░ 50% |
 | ⚙ Software Engineering   | ▓▓▓░░░░░░ 45% |
 | 🟦 TypeScript            | ▓▓▓░░░░░░ 40% |
 
