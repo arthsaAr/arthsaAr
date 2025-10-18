@@ -5,42 +5,54 @@
 </p>
 
 <h1 align="center">arthsaAr Guy</h1>
-<p align="center">🎮 Aspiring Software & Game Developer | Leveling up every day!</p>
+<p align="center">🎮 Aspiring Software & Game Developer</p>
 
 ---
 
 ## 💻 Skills Inventory
 
 ```
+🌐 Web & Mobile Development
+├─ HTML / CSS
+├─ jQuery, PHP
+├─ React Native
+├─ UI Design Basics
+
 🕹 Game Development
 ├─ Unity
 ├─ OpenGL/GLUT
 ├─ SDL
-├─ Game Design
-├─ 3D Rendering
-
-🌐 Web & Mobile Development
-├─ HTML / CSS
-├─ React.js / React Native
-├─ jQuery
+├─ Real-Time Rendering & Texturing
+├─ Particle & Mass-Spring Animation Systems
+├─ Basic Ray Tracing (Reflections, Shadows)
+├─ Client/Server Systems for Multiplayer Games
+├─ Object-Oriented Programming (OOP)
+├─ Game Design & Mechanics
+├─ AI in Game Playing
 
 ⚙ Software Engineering & Tools
 ├─ Git / GitHub
 ├─ Visual Studio / VS Code
-├─ JUnit
-├─ SDLC
-├─ Debugging
-├─ Problem Solving
+├─ Requirements & Use Case Modeling
+├─ SDLC & Documentation
+├─ Debugging & Testing
+├─ Problem Solving (LeetCode Practice)
+
+🛡 Cryptography & Security
+├─ Basics of Encryption & Security Definitions
+├─ Block Ciphers & Public-Key systems
+├─ Symmetric & Asymmetric Encryption
 
 📝 Programming Languages
-├─ C++, C#, Java, Python, JavaScript, TypeScript, PHP
+├─ C++, C#, Java, JavaScript, TypeScript
 
 🗄 Databases
-├─ MySQL
+├─ MySQL / MySQL Workbench
 ├─ ER Modeling, Normalization, Schema Design
+├─ Writing Queries & Data Extraction
 
 🎨 Additional Skills
-├─ Linux
+├─ Linux (Command Line, File Management)
 ├─ Adobe Photoshop, Premiere Pro, DaVinci Resolve
 ```
 ## 🏆 Featured Projects
