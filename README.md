@@ -80,8 +80,8 @@
 | 🎮 Unity                | ▓▓▓▓▓░░░░ 60% |
 | 🌐 React Native          | ▓▓▓▓░░░░░ 50% |
 | 🔐 Cryptography          | ▓▓▓▓░░░░░ 50% |
+| 🟦 TypeScript            | ▓▓▓▓░░░░░ 50% |
 | ⚙ Software Engineering   | ▓▓▓░░░░░░ 45% |
-| 🟦 TypeScript            | ▓▓▓░░░░░░ 40% |
 
 
 ## 📬 Contact & Connect
