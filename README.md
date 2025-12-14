@@ -61,6 +61,7 @@
 
 | Project | Description | Repo Link |
 |---------|-------------|-----------|
+| ♔ Chess Game | Full-Stack Chess Application with AI player of different levels. Includes interactive GUI for any skill level player with external features like Tutorial, Redo/Undo moves, Load/Save the state of the game. | [Repo](https://github.com/arthsaAr/Chess-game-with-AI) |
 | 🎮 Pie-Man | Pac-Man inspired 2D game with dynamic movement, pellet mechanics, and collision detection. | [Repo](https://github.com/arthsaAr/Pieman-OpenGL-GLUT-2D-game) |
 | 🧩 Maze Game 3D | Dynamic maze generation with pathfinding algorithms for a 3D-style maze adventure. | [Repo](https://github.com/arthsaAr/Mazegame-OpenGL-GLUT-3D-game) |
 
