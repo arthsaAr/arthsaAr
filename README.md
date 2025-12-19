@@ -76,13 +76,14 @@
 | 🧠 Game Design           | ▓▓▓▓▓▓░░░ 75% |
 | 🐧 Linux                | ▓▓▓▓▓▓░░░ 70% |
 | 🐙 Git / GitHub          | ▓▓▓▓▓▓░░░ 70% |
+| ⚙ Software Engineering  | ▓▓▓▓▓▓░░░ 65% |
 | 🎨 CSS                  | ▓▓▓▓▓▓░░░ 65% |
 | 🗄 MySQL                | ▓▓▓▓▓░░░░ 60% |
 | 🎮 Unity                | ▓▓▓▓▓░░░░ 60% |
 | 🌐 React Native          | ▓▓▓▓░░░░░ 50% |
 | 🔐 Cryptography          | ▓▓▓▓░░░░░ 50% |
 | 🟦 TypeScript            | ▓▓▓▓░░░░░ 50% |
-| ⚙ Software Engineering   | ▓▓▓░░░░░░ 45% |
+
 
 
 ## 📬 Contact & Connect
