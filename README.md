@@ -1,7 +1,3 @@
-<h1 align="center"><img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDd5amo5dTdxaHFzNmU3MHRtYTVtejY3Zm82aDNlZ2xrZDRiMDA5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RtdRhc7TxBxB0YAsK6/giphy.gif" alt="Gaming GIF" width="31"/> Raashtra <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDd5amo5dTdxaHFzNmU3MHRtYTVtejY3Zm82aDNlZ2xrZDRiMDA5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RtdRhc7TxBxB0YAsK6/giphy.gif" alt="Gaming GIF" width="31"/></h1>
-<p align="center">🎮 Aspiring Software & Game Developer | Games • Apps • Interactive Systems (PC & Mobile)</p>
-
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 <div align="center">
 <a href="https://github.com/arthsaAr">
 <img align="center" src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=arthsaAr&theme=radical" height="180em" />
@@ -35,7 +31,7 @@
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
-## 📬 Contact & Connect
+## 🌐 Connect With Me
 
 <p align="center">
   <a href="mailto:Contact.raashtra@gmail.com"><img src="https://img.shields.io/badge/Email-Contact.raashtra@gmail.com-blue?style=for-the-badge&logo=gmail" alt="Email"></a>
