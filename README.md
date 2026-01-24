@@ -1,69 +1,18 @@
-<!-- 🎮 Gaming-Themed GitHub README for RQx Genix -->
+<h1 align="center"><img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDd5amo5dTdxaHFzNmU3MHRtYTVtejY3Zm82aDNlZ2xrZDRiMDA5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RtdRhc7TxBxB0YAsK6/giphy.gif" alt="Gaming GIF" width="31"/> Raashtra <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDd5amo5dTdxaHFzNmU3MHRtYTVtejY3Zm82aDNlZ2xrZDRiMDA5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RtdRhc7TxBxB0YAsK6/giphy.gif" alt="Gaming GIF" width="31"/></h1>
+<p align="center">🎮 Aspiring Software & Game Developer | Games • Apps • Interactive Systems (PC & Mobile)</p>
 
-<p align="center">
-  <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDd5amo5dTdxaHFzNmU3MHRtYTVtejY3Zm82aDNlZ2xrZDRiMDA5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RtdRhc7TxBxB0YAsK6/giphy.gif" alt="Gaming GIF" width="250"/>
-</p>
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+<div align="center">
+<a href="https://github.com/arthsaAr">
+<img align="center" src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=arthsaAr&theme=radical" height="180em" />
+<img align="center" src="http://github-profile-summary-cards.vercel.app/api/cards/stats?username=arthsaAr&theme=radical" height="180em" />
+<img align="center" src="http://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=arthsaAr&theme=radical" height="180em" />
+<img align="center" src="http://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=arthsaAr&theme=radical" height="180em" />
+<img align="center" src="http://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=arthsaAr&theme=radical" height="180em" />
+<img align="center" src="https://github-readme-activity-graph.vercel.app/graph?username=arthsaAr&theme=redical" height="215em"/>
+</div>
 
-<h1 align="center">arthsaAr Guy</h1>
-<p align="center">🎮 Aspiring Software & Game Developer</p>
-
----
-
-## 💻 Skills Inventory
-
-```
-🌐 Web & Mobile Development
-├─ HTML / CSS
-├─ jQuery, PHP
-├─ React Native
-├─ UI Design Basics
-
-🕹 Game Development
-├─ Unity
-├─ OpenGL/GLUT
-├─ SDL
-├─ Real-Time Rendering & Texturing
-├─ Particle & Mass-Spring Animation Systems
-├─ Basic Ray Tracing (Reflections, Shadows)
-├─ Client/Server Systems for Multiplayer Games
-├─ Object-Oriented Programming (OOP)
-├─ Game Design & Mechanics
-├─ AI in Game Playing
-
-⚙ Software Engineering & Tools
-├─ Git / GitHub
-├─ Visual Studio / VS Code
-├─ Requirements & Use Case Modeling
-├─ SDLC & Documentation
-├─ Debugging & Testing
-├─ Problem Solving (LeetCode Practice)
-
-🛡 Cryptography & Security
-├─ Basics of Encryption & Security Definitions
-├─ Block Ciphers & Public-Key systems
-├─ Symmetric & Asymmetric Encryption
-
-💻 Programming Languages
-├─ C++, C#, Java, JavaScript, TypeScript
-
-🗄 Databases
-├─ MySQL / MySQL Workbench
-├─ ER Modeling, Normalization, Schema Design
-├─ Writing Queries & Data Extraction
-
-🎨 Additional Skills
-├─ Linux (Command Line, File Management)
-├─ Adobe Photoshop, Premiere Pro, DaVinci Resolve
-```
-## 🏆 Featured Projects
-
-> *Click the links to explore the code!*
-
-| Project | Description | Repo Link |
-|---------|-------------|-----------|
-| ♔ Chess Game | Full-Stack Chess Application with AI player of different levels. Includes interactive GUI for any skill level player with external features like Tutorial, Redo/Undo moves, Load/Save the state of the game. | [Repo](https://github.com/arthsaAr/Chess-game-with-AI) |
-| 🎮 Pie-Man | Pac-Man inspired 2D game with dynamic movement, pellet mechanics, and collision detection. | [Repo](https://github.com/arthsaAr/Pieman-OpenGL-GLUT-2D-game) |
-| 🧩 Maze Game 3D | Dynamic maze generation with pathfinding algorithms for a 3D-style maze adventure. | [Repo](https://github.com/arthsaAr/Mazegame-OpenGL-GLUT-3D-game) |
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 ## 📊 Skill Mastery Level
 
@@ -82,9 +31,9 @@
 | 🎮 Unity                | ▓▓▓▓▓░░░░ 60% |
 | 🌐 React Native          | ▓▓▓▓░░░░░ 50% |
 | 🔐 Cryptography          | ▓▓▓▓░░░░░ 50% |
-| 🟦 TypeScript            | ▓▓▓▓░░░░░ 50% |
+| 🟦 TypeScript            | ▓▓▓▓░░░░░ 40% |
 
-
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 ## 📬 Contact & Connect
 
@@ -93,13 +42,10 @@
   <a href="https://www.linkedin.com/in/raashtra" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-Raashtra-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn"></a>
 </p>
 
----
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 ## 🎮 Motto
 > "Exploring the world of code, defeating errors and leveling up, one commit at a time."
-
----
-
 <p align="center">
   <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Game Over GIF" width="200"/>
 </p>
