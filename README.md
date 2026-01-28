@@ -8,7 +8,7 @@
 <img align="center" src="https://github-readme-activity-graph.vercel.app/graph?username=arthsaAr&theme=redical" height="215em"/>
 </div>
 
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+<!-- <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"> -->
 
 ## 📊 Skill Mastery Level
 
@@ -25,11 +25,10 @@
 | 🎨 CSS                  | ▓▓▓▓▓▓░░░ 65% |
 | 🗄 MySQL                | ▓▓▓▓▓░░░░ 60% |
 | 🎮 Unity                | ▓▓▓▓▓░░░░ 60% |
-| 🌐 React Native          | ▓▓▓▓░░░░░ 50% |
-| 🔐 Cryptography          | ▓▓▓▓░░░░░ 50% |
-| 🟦 TypeScript            | ▓▓▓▓░░░░░ 40% |
+| 🟦 TypeScript            | ▓▓▓▓▓░░░░ 60% |
+| 🌐 React Native          | ▓▓▓▓▓░░░░ 60% |
 
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+<!-- <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"> -->
 
 ## 🌐 Connect With Me
 
@@ -38,7 +37,7 @@
   <a href="https://www.linkedin.com/in/raashtra" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-Raashtra-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn"></a>
 </p>
 
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+<!-- <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"> -->
 
 ## 🎮 Motto
 > "Exploring the world of code, defeating errors and leveling up, one commit at a time."
