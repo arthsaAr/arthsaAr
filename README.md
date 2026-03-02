@@ -11,7 +11,22 @@
 <!-- <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"> -->
 
 ## 📊 Skill Mastery Level
-
+| Skill                        | Mastery |
+|------------------------------|---------|
+| ☕ Java                      | ▓▓▓▓▓▓▓▓░ 85% |
+| 🟦 TypeScript / JavaScript   | ▓▓▓▓▓▓▓░░ 80% |
+| 🐙 Git / GitHub              | ▓▓▓▓▓▓▓▓░ 85% |
+| 🌐 React Native              | ▓▓▓▓▓▓▓░░ 75% |
+| 🛠 Node.js / Express         | ▓▓▓▓▓▓▓░░ 75% |
+| 🗄 PostgreSQL / MySQL        | ▓▓▓▓▓▓░░░ 70% |
+| 🔥 Firebase / Firestore      | ▓▓▓▓▓▓░░░ 70% |
+| 🐳 Docker                    | ▓▓▓▓▓▓░░░ 65% |
+| 🔐 JWT / OAuth               | ▓▓▓▓▓▓░░░ 65% |
+| 💻 C++ / C#                  | ▓▓▓▓▓▓░░░ 65% |
+| 🐧 Linux                     | ▓▓▓▓▓░░░░ 60% |
+| 🧩 HTML / CSS                | ▓▓▓▓▓▓░░░ 70% |
+| ⚙ Software Engineering       | ▓▓▓▓▓▓▓░░ 75% |
+<!-- ## 📊 Skill Mastery Level
 | Skill                  | Mastery |
 |-------------------------|---------|
 | ☕ Java                 | ▓▓▓▓▓▓▓░░ 80% |
@@ -26,7 +41,7 @@
 | 🗄 MySQL                | ▓▓▓▓▓░░░░ 60% |
 | 🎮 Unity                | ▓▓▓▓▓░░░░ 60% |
 | 🟦 TypeScript            | ▓▓▓▓▓░░░░ 60% |
-| 🌐 React Native          | ▓▓▓▓▓░░░░ 60% |
+| 🌐 React Native          | ▓▓▓▓▓░░░░ 60% | -->
 
 <!-- <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"> -->
 
