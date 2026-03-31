@@ -2,12 +2,25 @@ import * as THREE from 'three'
 
 //scroll tracker
 let scrollProgress = 0;         //this ranges from 0 to 1
+const identityOverlay = document.getElementById('identity-overlay')
+
+function updateIdentityOverlay() {
+  if (!identityOverlay) return
+  if (scrollProgress < 0.05) {
+    identityOverlay.classList.remove('hidden')
+  } else {
+    identityOverlay.classList.add('hidden')
+  }
+}
 
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY 
     const maxScroll = document.body.scrollHeight - window.innerHeight
     scrollProgress = scrollY / maxScroll
+    updateIdentityOverlay()
 })      //this always has value between 0 and 1
+
+updateIdentityOverlay()
 
 
 
@@ -184,34 +197,42 @@ scene.add(camera)
 //=======================================================
 const cameraPath = new THREE.CatmullRomCurve3([
   new THREE.Vector3(0, 1.6, 8),    // Scene 0-1: starting position in forest
-  new THREE.Vector3(0, 1.5, 5),    // Scene 2: scroll begins, moving forward
-  new THREE.Vector3(0, 1.3, 2.5),  // Scene 3: approaching the well
-  new THREE.Vector3(0, 1.0, 0.8),  // Scene 4: at the well rim
-  new THREE.Vector3(0, 0.0, 0.1),  // Scene 4→5: crossing the rim, peering in
-  new THREE.Vector3(0, -2.0, 0),   // Scene 5: inside, descending (experience)
-  new THREE.Vector3(0, -5.0, 0),   // Scene 6: deeper (skills)
-  new THREE.Vector3(0, -3.0, 0),   // Scene 7: ascending back up
-  new THREE.Vector3(0, 1.8, -0.5), // Scene 8: emerging from the well
-  new THREE.Vector3(0, 2.0, -3),   // Scene 9: moved back, facing outward
+  new THREE.Vector3(0, 1.55, 5),   // Scene 2: begin moving forward
+  new THREE.Vector3(0, 1.55, 3.5), // keep height as we approach the well
+  new THREE.Vector3(0, 1.55, 2.1), // closer to the rim, still mostly level
+  new THREE.Vector3(0, 1.45, 1.0), // right at the rim edge
+  new THREE.Vector3(0, 1.05, 0.4), // crossing the rim gradually
+  new THREE.Vector3(0, 0.4, 0),   // just inside the well mouth
+  new THREE.Vector3(0, -1.8, 0),   // descending deeper inside
+  new THREE.Vector3(0, -4.2, 0),   // lowest experience depth
+  new THREE.Vector3(0, -2.2, 0),   // rising back toward the opening
+  new THREE.Vector3(0, 1.8, -0.7), // emerging, facing outward
+  new THREE.Vector3(0, 2.2, -3.2), // exit position for projects/contact
 ])
 
 // This is what the camera will smoothly chase each frame
 const targetPosition = new THREE.Vector3()
 const targetLookAt  = new THREE.Vector3()
+const currentLookAt = new THREE.Vector3()
+
+function easeInOutCubic(t) {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+}
 
 // ---- LOOKAT PATH ----
 // What the camera focuses on at each stage
 const lookAtPath = new THREE.CatmullRomCurve3([
-  new THREE.Vector3(0, 0.6, 0),   // looking at the well from forest
-  new THREE.Vector3(0, 0.6, 0),   // still looking at the well
-  new THREE.Vector3(0, 0.5, 0),   // well rim level
-  new THREE.Vector3(0, 0.2, 0),   // just inside the rim
-  new THREE.Vector3(0, -1.0, 0),  // into the dark interior
-  new THREE.Vector3(0, -4.0, 0),  // looking down while descending
-  new THREE.Vector3(0, -7.0, 0),  // deeper
-  new THREE.Vector3(0, -2.0, 0),  // leveling out before exit
-  new THREE.Vector3(0, 2.5, -2),  // looking up and outward on exit
-  new THREE.Vector3(0, 1.5, -8),  // looking out at the world
+  new THREE.Vector3(0, 0.8, 0),   // looking at the well from forest
+  new THREE.Vector3(0, 0.75, 0),  // keep focus on the well rim
+  new THREE.Vector3(0, 0.7, 0),   // still focused on the well top
+  new THREE.Vector3(0, 0.4, 0),   // crossing the rim slowly
+  new THREE.Vector3(0, 0.0, 0),   // just inside the well
+  new THREE.Vector3(0, -1.4, 0),  // eye adjusting inside
+  new THREE.Vector3(0, -3.8, 0),  // deeper interior depth
+  new THREE.Vector3(0, -1.4, 0),  // preparing to exit
+  new THREE.Vector3(0, 2.2, -1.2),// looking up through outlet
+  new THREE.Vector3(0, 1.6, -6),  // looking out to the world
+  new THREE.Vector3(0, 1.5, -8),  // final outward gaze
 ])
 
 //Handling resize
@@ -239,20 +260,28 @@ function tick() {
   }
   pos.needsUpdate = true  // tell Three.js the buffer changed
 
+    const easedProgress = easeInOutCubic(scrollProgress)
+    cameraPath.getPoint(easedProgress, targetPosition)
+    lookAtPath.getPoint(easedProgress, targetLookAt)
 
-  cameraPath.getPoint(scrollProgress, targetPosition)  // get the target position along the path based on scroll
+    camera.position.lerp(targetPosition, 0.08)
+    currentLookAt.lerp(targetLookAt, 0.08)
+    camera.lookAt(currentLookAt)
 
-  camera.position.lerp(targetPosition, 0.05)  // smooth chase with linear interpolation 
+    // dark older well mood at the beginning, then cleaner cinematic walls near the end
+    const wallPhase = THREE.MathUtils.clamp((scrollProgress - 0.45) / 0.45, 0, 1)
+    wallMat.color.lerpColors(new THREE.Color(0x191517), new THREE.Color(0x727680), wallPhase)
+    wallMat.roughness = THREE.MathUtils.lerp(0.96, 0.28, wallPhase)
+    rimMat.color.lerpColors(new THREE.Color(0x0f0d10), new THREE.Color(0xd1d7de), wallPhase)
+    rimMat.roughness = THREE.MathUtils.lerp(0.9, 0.18, wallPhase)
+    interiorMat.color.lerpColors(new THREE.Color(0x050508), new THREE.Color(0x2f3441), wallPhase)
 
-  lookAtPath.getPoint(scrollProgress, targetLookAt)  // get the target lookAt point along its path
+    ambientLight.intensity = THREE.MathUtils.lerp(0.28, 0.75, wallPhase)
+    sunLight.intensity = THREE.MathUtils.lerp(0.25, 1.0, wallPhase)
+    scene.fog.density = THREE.MathUtils.lerp(0.05, 0.018, wallPhase)
 
-  //this is temp vector that also lerps/moves towards lookAt target (for smooth camera.lookAt value)
-  camera.lookAt(targetLookAt)
-
-
-
-  // Slowly rotate the well group (very subtle)
-  wellGroup.rotation.y = elapsed * 0.05
+    // Slowly rotate the well group (very subtle)
+    wellGroup.rotation.y = elapsed * 0.02
 
   renderer.render(scene, camera)
   requestAnimationFrame(tick)
