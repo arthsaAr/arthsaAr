@@ -1,29 +1,21 @@
 import * as THREE from 'three'
-import GUI from 'lil-gui'
 
-// const gui = new GUI()
+//scroll tracker
+let scrollProgress = 0;         //this ranges from 0 to 1
 
-// // Tweak fog in real time
-// const fogFolder = gui.addFolder('Fog')
-// fogFolder.add(scene.fog, 'density', 0, 0.2, 0.001).name('Density')
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY 
+    const maxScroll = document.body.scrollHeight - window.innerHeight
+    scrollProgress = scrollY / maxScroll
+})      //this always has value between 0 and 1
 
-// // Tweak sun light
-// const lightFolder = gui.addFolder('Sun Light')
-// lightFolder.add(sunLight, 'intensity', 0, 2, 0.01)
-// lightFolder.add(sunLight.position, 'x', -20, 20, 0.1)
-// lightFolder.add(sunLight.position, 'y', 0, 20, 0.1)
 
-// // Tweak camera (manual exploration)
-// const camFolder = gui.addFolder('Camera')
-// camFolder.add(camera.position, 'x', -20, 20, 0.1)
-// camFolder.add(camera.position, 'y', 0, 10, 0.1)
-// camFolder.add(camera.position, 'z', -20, 20, 0.1)
 
 // main scene
 const scene = new THREE.Scene()
 
-scene.fog = new THREE.FogExp2(0x1a0f2e, 0.035)
-
+//FogExp2 is exponential fading type, with distance
+scene.fog = new THREE.FogExp2(0x1a0f2e, 0.035)      //this makes a blurry type of view | also it makes objects fade into the background color as they get further away.
 scene.background = new THREE.Color(0x1a0f2e)
 
 const hemisphereLight = new THREE.HemisphereLight(
@@ -48,13 +40,13 @@ scene.add(sunLight)
 const ambientLight = new THREE.AmbientLight(0x120820, 0.5)
 scene.add(ambientLight)
 
-// ---- GROUND ----
-const groundGeo = new THREE.CircleGeometry(50, 64) // large flat circle
+// (it's a MESH and it needs a geometry and a material) - this is ground
+//every visible object in three is a mesh
+const groundGeo = new THREE.CircleGeometry(50, 64) // large flat circle of radius 50 
 const groundMat = new THREE.MeshStandardMaterial({
   color: 0x0d1a0d,    // very dark green (dead grass, dusk)
-  roughness: 1,
-  metalness: 0
 })
+
 const ground = new THREE.Mesh(groundGeo, groundMat)
 ground.rotation.x = -Math.PI / 2  // flat on the XZ plane
 ground.receiveShadow = true
@@ -161,9 +153,9 @@ const particleMat = new THREE.PointsMaterial({
 const particles = new THREE.Points(particleGeo, particleMat)
 scene.add(particles)
 
-
+//=======================================================
 // renderer
-const canvas = document.getElementById('webgl')
+const canvas = document.getElementById('webgl')     //uses GPU webGL to paint onto the CANVAS/screen where the camera is pointing
 const renderer = new THREE.WebGLRenderer({
   canvas,
   antialias: true  //smooth edges
@@ -176,6 +168,8 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap
 renderer.toneMapping = THREE.ACESFilmicToneMapping  // cinematic color grading
 renderer.toneMappingExposure = 0.8  // slightly underexposed = moody
 
+
+
 //main Camera
 const camera = new THREE.PerspectiveCamera(
   60,                                    //60 feels cinematic
@@ -186,6 +180,39 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.set(0, 1.6, 8)  //verticle/standing height, facing the well
 scene.add(camera)
+
+//=======================================================
+const cameraPath = new THREE.CatmullRomCurve3([
+  new THREE.Vector3(0, 1.6, 8),    // Scene 0-1: starting position in forest
+  new THREE.Vector3(0, 1.5, 5),    // Scene 2: scroll begins, moving forward
+  new THREE.Vector3(0, 1.3, 2.5),  // Scene 3: approaching the well
+  new THREE.Vector3(0, 1.0, 0.8),  // Scene 4: at the well rim
+  new THREE.Vector3(0, 0.0, 0.1),  // Scene 4→5: crossing the rim, peering in
+  new THREE.Vector3(0, -2.0, 0),   // Scene 5: inside, descending (experience)
+  new THREE.Vector3(0, -5.0, 0),   // Scene 6: deeper (skills)
+  new THREE.Vector3(0, -3.0, 0),   // Scene 7: ascending back up
+  new THREE.Vector3(0, 1.8, -0.5), // Scene 8: emerging from the well
+  new THREE.Vector3(0, 2.0, -3),   // Scene 9: moved back, facing outward
+])
+
+// This is what the camera will smoothly chase each frame
+const targetPosition = new THREE.Vector3()
+const targetLookAt  = new THREE.Vector3()
+
+// ---- LOOKAT PATH ----
+// What the camera focuses on at each stage
+const lookAtPath = new THREE.CatmullRomCurve3([
+  new THREE.Vector3(0, 0.6, 0),   // looking at the well from forest
+  new THREE.Vector3(0, 0.6, 0),   // still looking at the well
+  new THREE.Vector3(0, 0.5, 0),   // well rim level
+  new THREE.Vector3(0, 0.2, 0),   // just inside the rim
+  new THREE.Vector3(0, -1.0, 0),  // into the dark interior
+  new THREE.Vector3(0, -4.0, 0),  // looking down while descending
+  new THREE.Vector3(0, -7.0, 0),  // deeper
+  new THREE.Vector3(0, -2.0, 0),  // leveling out before exit
+  new THREE.Vector3(0, 2.5, -2),  // looking up and outward on exit
+  new THREE.Vector3(0, 1.5, -8),  // looking out at the world
+])
 
 //Handling resize
 window.addEventListener('resize', () => {
@@ -199,17 +226,30 @@ window.addEventListener('resize', () => {
 const clock = new THREE.Clock()
 
 function tick() {
-  const elapsed = clock.getElapsedTime()
+  const elapsed = clock.getElapsedTime()        //independent of the frame rate(prevents faster and slower refresh rate mismatches)
 
   // Slowly drift particles upward, reset when too high
   const pos = particles.geometry.attributes.position
   for (let i = 0; i < particleCount; i++) {
     pos.array[i * 3 + 1] += 0.003  // drift up
+
     if (pos.array[i * 3 + 1] > 6) {
       pos.array[i * 3 + 1] = 0     // reset to ground
     }
   }
   pos.needsUpdate = true  // tell Three.js the buffer changed
+
+
+  cameraPath.getPoint(scrollProgress, targetPosition)  // get the target position along the path based on scroll
+
+  camera.position.lerp(targetPosition, 0.05)  // smooth chase with linear interpolation 
+
+  lookAtPath.getPoint(scrollProgress, targetLookAt)  // get the target lookAt point along its path
+
+  //this is temp vector that also lerps/moves towards lookAt target (for smooth camera.lookAt value)
+  camera.lookAt(targetLookAt)
+
+
 
   // Slowly rotate the well group (very subtle)
   wellGroup.rotation.y = elapsed * 0.05

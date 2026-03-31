@@ -6,11 +6,11 @@
 
 body {
   background: #000;
-  overflow: hidden; /* we control scroll manually later */
+  height: 500vh; /* we control scroll manually later */
 }
 
 canvas {
-  position: fixed;
+  position: fixed;    /* no scroll with page, remains fixed*/
   top: 0;
   left: 0;
   outline: none;
