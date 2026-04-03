@@ -1,66 +1,755 @@
-* {
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  background: #000;
-  min-height: 500vh; /* we control scroll manually later */
-  overflow-x: hidden;
+/* ============================================================
+   CUSTOM PROPERTIES
+   ============================================================ */
+:root {
+  --clr-bg:        #0e0818;
+  --clr-bg-mid:    #12102a;
+  --clr-surface:   rgba(8, 4, 22, 0.80);
+  --clr-border:    rgba(110, 65, 255, 0.18);
+  --clr-accent:    #7c4dff;
+  --clr-accent-hi: #b09aff;
+  --clr-text:      #ede8ff;
+  --clr-text-dim:  #9a8cc0;
+  --clr-text-mute: #5a4880;
+
+  --font-display: 'Cormorant', 'Georgia', serif;
+  --font-head:    'Syne', sans-serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
 }
 
-canvas {
-  position: fixed;    /* no scroll with page, remains fixed*/
+/* ============================================================
+   BASE — scroll distance drives everything
+   ============================================================ */
+html { scroll-behavior: smooth; }
+
+body {
+  height: 700vh;            /* 7 full screens of scroll room */
+  background: var(--clr-bg);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  color: var(--clr-text);
+}
+
+canvas#webgl {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* ============================================================
+   PROGRESS BAR — subtle top indicator
+   ============================================================ */
+.progress-bar {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  outline: none;
+  height: 2px;
+  background: rgba(120, 70, 255, 0.08);
+  z-index: 100;
 }
 
-.identity-overlay {
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--clr-accent), var(--clr-accent-hi));
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px var(--clr-accent);
+}
+
+/* ============================================================
+   ENTRY VEIL — cinematic black opening card
+   ============================================================ */
+.entry-veil {
   position: fixed;
   inset: 0;
+  background: #000;
+  z-index: 200;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: veilFade 4.5s ease forwards;
+}
+
+.veil-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(180, 150, 255, 0.5);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  animation: veilNameFade 4.5s ease forwards;
+}
+
+@keyframes veilFade {
+  0%, 50%  { opacity: 1; }
+  100%     { opacity: 0; }
+}
+
+@keyframes veilNameFade {
+  0%       { opacity: 0; transform: translateY(6px) scale(0.98); }
+  30%      { opacity: 1; transform: translateY(0) scale(1); }
+  70%      { opacity: 1; }
+  100%     { opacity: 0; }
+}
+
+/* ============================================================
+   SCROLL SECTIONS — shared base
+   All sections are fixed overlays. JS adds .visible on scroll.
+   ============================================================ */
+.scroll-section {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.scroll-section.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ============================================================
+   IDENTITY SECTION — Scene 1: cinematic name reveal
+   ============================================================ */
+.identity-section {
+  background: transparent;
+  padding: 0;
+}
+
+.identity-content {
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  z-index: 2;
-  pointer-events: none;
+  gap: 0;
+}
+
+.identity-eyebrow {
+  font-family: var(--font-head);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--clr-accent);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+  opacity: 0.8;
+}
+
+.identity-name {
+  font-family: var(--font-display);
+  font-size: clamp(3.6rem, 10vw, 8.5rem);
+  font-weight: 600;
+  font-style: normal;
+  color: var(--clr-text);
+  letter-spacing: 0.02em;
+  line-height: 1.0;
+  text-shadow:
+    0 0 60px rgba(120, 70, 255, 0.55),
+    0 0 140px rgba(80, 30, 180, 0.25),
+    0 2px 30px rgba(0, 0, 0, 0.9);
+}
+
+.identity-divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--clr-accent), transparent);
+  margin: 1.4rem auto;
+}
+
+.identity-role {
+  font-family: var(--font-head);
+  font-size: clamp(0.65rem, 1.4vw, 0.82rem);
+  font-weight: 600;
+  color: var(--clr-text-dim);
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+
+.identity-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(180, 160, 255, 0.65);
+  letter-spacing: 0.02em;
+  max-width: 440px;
+  line-height: 1.55;
+  margin-bottom: 2.4rem;
+}
+
+.identity-hint {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  animation: hintBreathe 3s ease-in-out infinite;
+}
+
+.hint-line {
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: var(--clr-text-mute);
+}
+
+.hint-text {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  color: var(--clr-text-mute);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@keyframes hintBreathe {
+  0%, 100% { opacity: 0.3; transform: translateY(0); }
+  50%       { opacity: 0.9; transform: translateY(5px); }
+}
+
+/* ============================================================
+   PANEL — the glassmorphism card
+   ============================================================ */
+.panel {
+  width: 100%;
+  max-width: 760px;
+  max-height: 86vh;
+  overflow-y: auto;
+  padding: 2.5rem 3rem;
+
+  background: var(--clr-surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--clr-border);
+  border-radius: 20px;
+  box-shadow:
+    0 12px 70px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(120, 70, 255, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(120, 70, 255, 0.25) transparent;
+}
+
+.panel::-webkit-scrollbar        { width: 4px; }
+.panel::-webkit-scrollbar-track  { background: transparent; }
+.panel::-webkit-scrollbar-thumb  { background: rgba(120, 70, 255, 0.25); border-radius: 2px; }
+
+.panel--wide    { max-width: 940px; }
+.panel--skills  { max-width: 680px; }
+.panel--about   { max-width: 640px; }
+.panel--contact { max-width: 500px; text-align: center; }
+
+/* Panel heading system */
+.panel-eyebrow {
+  font-family: var(--font-head);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--clr-accent);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.panel-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--clr-text);
+  letter-spacing: 0.01em;
+  margin-bottom: 1.8rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(120, 70, 255, 0.12);
+  line-height: 1.2;
+}
+
+/* ============================================================
+   ABOUT  — Scene 2
+   ============================================================ */
+.about-text {
+  font-size: 0.9rem;
+  color: var(--clr-text-dim);
+  line-height: 1.78;
+  margin-bottom: 2rem;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--clr-border);
+  border: 1px solid var(--clr-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.stat {
+  background: rgba(20, 10, 45, 0.7);
+  padding: 1.1rem 0.8rem;
+  text-align: center;
+  transition: background 0.25s ease;
+}
+
+.stat:hover { background: rgba(40, 20, 80, 0.75); }
+
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--clr-accent-hi);
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-family: var(--font-head);
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: var(--clr-text-mute);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 560px) {
+  .about-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================================
+   EXPERIENCE — Scene 3: cards slide in
+   ============================================================ */
+.exp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.exp-item {
+  padding: 1.1rem 0;
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+/* Right-origin item: slides from the right */
+.exp-slide-right {
+  transform: translateX(24px);
+}
+
+/* When section becomes visible, items animate in */
+.scroll-section.visible .exp-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-section.visible .exp-item:nth-child(1) { transition-delay: 0.1s; }
+.scroll-section.visible .exp-item:nth-child(3) { transition-delay: 0.25s; }
+
+.exp-divider {
+  height: 1px;
+  background: rgba(120, 70, 255, 0.10);
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.exp-role {
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--clr-text);
+  margin-bottom: 0.15rem;
+}
+
+.exp-company {
+  font-size: 0.75rem;
+  color: var(--clr-text-mute);
+}
+
+.exp-date {
+  font-family: var(--font-head);
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: var(--clr-accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding-top: 0.1rem;
+}
+
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.exp-bullets li {
+  font-size: 0.80rem;
+  color: rgba(200, 185, 240, 0.7);
+  line-height: 1.65;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.exp-bullets li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--clr-accent);
+  font-size: 0.58rem;
+  top: 0.22em;
+}
+
+/* Education strip */
+.edu-strip {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(120, 70, 255, 0.10);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease 0.45s, transform 0.6s ease 0.45s;
+}
+
+.scroll-section.visible .edu-strip {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  text-align: center;
 }
 
-.identity-overlay.hidden {
+.edu-icon   { font-size: 1.05rem; line-height: 1; padding-top: 0.05rem; }
+
+.edu-name {
+  font-family: var(--font-head);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: rgba(200, 185, 240, 0.85);
+}
+
+.edu-detail {
+  font-size: 0.70rem;
+  color: var(--clr-text-mute);
+  margin-top: 0.22rem;
+}
+
+/* ============================================================
+   SKILLS — Scene 4: subtle float on visible
+   ============================================================ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem 2.2rem;
+}
+
+@media (max-width: 560px) {
+  .skills-grid { grid-template-columns: 1fr; }
+}
+
+.skill-group {
   opacity: 0;
-  transform: translateY(-24px);
+  transform: translateY(14px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
-.identity-line {
-  color: rgba(248, 251, 255, 0.96);
+.scroll-section.visible .skill-group { opacity: 1; transform: translateY(0); }
+.scroll-section.visible .skill-group:nth-child(1) { transition-delay: 0.05s; }
+.scroll-section.visible .skill-group:nth-child(2) { transition-delay: 0.15s; }
+.scroll-section.visible .skill-group:nth-child(3) { transition-delay: 0.25s; }
+.scroll-section.visible .skill-group:nth-child(4) { transition-delay: 0.35s; }
+
+.skill-label {
+  font-family: var(--font-head);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--clr-accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.skill-tags span {
+  font-size: 0.73rem;
+  color: rgba(200, 185, 240, 0.8);
+  background: rgba(110, 65, 220, 0.08);
+  border: 1px solid rgba(110, 65, 220, 0.20);
+  border-radius: 6px;
+  padding: 0.28rem 0.65rem;
+  transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+  cursor: default;
+}
+
+.skill-tags span:hover {
+  background: rgba(120, 70, 255, 0.22);
+  color: var(--clr-text);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   PROJECTS — Scene 5: scale in on visible
+   ============================================================ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 680px) {
+  .projects-grid { grid-template-columns: 1fr; }
+}
+
+.project-card {
+  padding: 1.3rem;
+  background: rgba(14, 6, 36, 0.60);
+  border: 1px solid rgba(110, 65, 220, 0.12);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(14px) scale(0.97);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease,
+    border-color 0.28s ease,
+    background 0.28s ease;
+}
+
+.scroll-section.visible .project-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-section.visible .project-card:nth-child(1) { transition-delay: 0.05s; }
+.scroll-section.visible .project-card:nth-child(2) { transition-delay: 0.14s; }
+.scroll-section.visible .project-card:nth-child(3) { transition-delay: 0.23s; }
+.scroll-section.visible .project-card:nth-child(4) { transition-delay: 0.32s; }
+
+.project-card:hover {
+  border-color: rgba(120, 70, 255, 0.35);
+  background: rgba(24, 10, 56, 0.72);
+  transform: translateY(-3px) scale(1) !important;
+}
+
+.project-card--featured {
+  border-color: rgba(120, 70, 255, 0.24);
+  background: rgba(26, 8, 58, 0.68);
+}
+
+.project-badge {
+  font-family: var(--font-head);
+  font-size: 0.60rem;
+  font-weight: 700;
+  color: #a07cff;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-name {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--clr-text);
+}
+
+.project-desc {
+  font-size: 0.775rem;
+  color: rgba(155, 135, 200, 0.78);
+  line-height: 1.68;
+  flex: 1;
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.32rem;
+  margin-top: 0.2rem;
+}
+
+.project-stack span {
+  font-size: 0.64rem;
+  color: rgba(140, 110, 200, 0.8);
+  background: rgba(70, 35, 130, 0.18);
+  border: 1px solid rgba(100, 60, 180, 0.18);
+  border-radius: 4px;
+  padding: 0.16rem 0.46rem;
+}
+
+.project-link {
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--clr-accent);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  align-self: flex-start;
+  transition: color 0.2s ease;
+  margin-top: 0.2rem;
+}
+
+.project-link:hover { color: var(--clr-accent-hi); }
+
+/* ============================================================
+   CONTACT — Scene 6
+   ============================================================ */
+.contact-sub {
+  font-size: 0.86rem;
+  color: var(--clr-text-dim);
+  margin-bottom: 2rem;
+  margin-top: -1.1rem;
+  line-height: 1.65;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.contact-btn {
+  display: inline-block;
+  padding: 0.7rem 1.8rem;
+  border-radius: 9px;
+  font-family: var(--font-head);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  border: 1px solid rgba(120, 70, 255, 0.26);
+  color: rgba(200, 185, 240, 0.85);
+  background: rgba(80, 40, 160, 0.12);
+  transition: all 0.24s ease;
+}
+
+.contact-btn:hover {
+  background: rgba(100, 60, 200, 0.26);
+  color: var(--clr-text);
+  border-color: rgba(150, 100, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(80, 30, 180, 0.25);
+}
+
+.contact-btn--primary {
+  background: rgba(120, 70, 255, 0.18);
+  border-color: rgba(120, 70, 255, 0.45);
+  color: var(--clr-text);
+}
+
+.contact-btn--primary:hover {
+  background: rgba(120, 70, 255, 0.32);
+  box-shadow: 0 6px 28px rgba(100, 50, 255, 0.35);
+}
+
+/* ============================================================
+   FINAL FRAME — Scene 7
+   ============================================================ */
+.final-section {
+  background: transparent;
+}
+
+.final-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.final-line {
+  font-family: var(--font-display);
+  font-size: clamp(0.75rem, 1.4vw, 0.9rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(180, 155, 255, 0.5);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.final-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 600;
+  color: var(--clr-text);
+  letter-spacing: 0.02em;
   line-height: 1.05;
-  text-shadow: 0 0 24px rgba(255, 255, 255, 0.08);
+  text-shadow:
+    0 0 50px rgba(120, 70, 255, 0.4),
+    0 0 100px rgba(80, 30, 180, 0.15);
+  margin-bottom: 1.5rem;
 }
 
-.identity-line.label {
-  font-size: clamp(3.2rem, 6vw, 5.2rem);
-  font-weight: 800;
-  letter-spacing: 0.03em;
+.final-sub {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
 }
 
-.identity-line.role {
-  margin-top: 1rem;
-  font-size: clamp(1.4rem, 3.5vw, 2rem);
-  opacity: 0.88;
-  font-weight: 500;
+.final-sub a {
+  font-family: var(--font-head);
+  font-size: 0.70rem;
+  font-weight: 600;
+  color: var(--clr-text-mute);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-.identity-line.hint {
-  margin-top: 1.5rem;
-  font-size: 1.2rem;
-  opacity: 0.78;
-  letter-spacing: 0.14em;
+.final-sub a:hover { color: var(--clr-accent-hi); }
+
+.final-dot {
+  color: rgba(120, 70, 255, 0.35);
+  font-size: 0.8rem;
+}
+
+/* ============================================================
+   RESPONSIVE tweaks
+   ============================================================ */
+@media (max-width: 600px) {
+  .panel {
+    padding: 1.8rem 1.4rem;
+  }
+  .panel--wide {
+    padding: 1.5rem 1.2rem;
+  }
+  .identity-name {
+    font-size: clamp(3rem, 14vw, 4.5rem);
+  }
+  .exp-header {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
 }

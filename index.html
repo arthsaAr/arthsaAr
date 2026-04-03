@@ -3,16 +3,297 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
+    <title>Raashtra KC — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
+
+    <!-- Cinematic black opening — fades out slowly -->
+    <div class="entry-veil">
+      <div class="veil-name">Raashtra KC</div>
+    </div>
+
+    <!-- 3D canvas — fixed, always fullscreen -->
     <canvas id="webgl"></canvas>
 
-    <div id="identity-overlay" class="identity-overlay">
-      <div class="identity-line label">Raashtra KC</div>
-      <div class="identity-line role">Full-Stack Developer</div>
-      <div class="identity-line hint">↓ scroll to begin</div>
+    <!-- Subtle scroll progress bar -->
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+    <!-- =============================================
+         SCENE 1 — Identity  (0% → 12%)
+         Full-screen cinematic name reveal
+         ============================================= -->
+    <div id="section-identity" class="scroll-section identity-section">
+      <div class="identity-content">
+        <div class="identity-eyebrow">Portfolio · 2025</div>
+        <h1 class="identity-name">Raashtra KC</h1>
+        <div class="identity-divider"></div>
+        <div class="identity-role">Full-Stack Developer</div>
+        <p class="identity-tagline">
+          Building scalable and impactful digital systems
+        </p>
+        <div class="identity-hint">
+          <span class="hint-line"></span>
+          <span class="hint-text">scroll to explore</span>
+          <span class="hint-line"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
+         SCENE 2 — About  (14% → 27%)
+         Camera drifts through forest
+         ============================================= -->
+    <section id="section-about" class="scroll-section">
+      <div class="panel panel--about">
+        <div class="panel-eyebrow">The Person</div>
+        <h2 class="panel-title">About Me</h2>
+        <p class="about-text">
+          I'm a Computer Science student at The King's University passionate
+          about building full-stack applications that solve real-world problems.
+          I balance empathy-driven community work with precision-engineered
+          software — bringing the same care to code as I do to people.
+        </p>
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-num">3.46</div>
+            <div class="stat-label">GPA / 4.0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">180+</div>
+            <div class="stat-label">Clients Served</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">4.9★</div>
+            <div class="stat-label">Fiverr Rating</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2026</div>
+            <div class="stat-label">Expected Grad</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SCENE 3 — Experience  (30% → 50%)
+         Camera passes near the well
+         ============================================= -->
+    <section id="section-experience" class="scroll-section">
+      <div class="panel">
+        <div class="panel-eyebrow">The Journey</div>
+        <h2 class="panel-title">Experience</h2>
+
+        <div class="exp-list">
+          <div class="exp-item exp-slide-left">
+            <div class="exp-header">
+              <div>
+                <div class="exp-role">Community Support Worker</div>
+                <div class="exp-company">Entrust Disability Services · Edmonton</div>
+              </div>
+              <div class="exp-date">May 2023 — Present</div>
+            </div>
+            <ul class="exp-bullets">
+              <li>Maintained accurate daily documentation and progress reports for multiple clients</li>
+              <li>Implemented and adapted behavioral intervention plans in real-time under pressure</li>
+              <li>Collaborated with healthcare professionals, families, and coordinators across multidisciplinary teams</li>
+            </ul>
+          </div>
+
+          <div class="exp-divider"></div>
+
+          <div class="exp-item exp-slide-right">
+            <div class="exp-header">
+              <div>
+                <div class="exp-role">Freelance Video Editor</div>
+                <div class="exp-company">Fiverr · Remote</div>
+              </div>
+              <div class="exp-date">Jun 2020 — Apr 2023</div>
+            </div>
+            <ul class="exp-bullets">
+              <li>Delivered to 180+ international clients, maintaining a 4.9 / 5.0 rating</li>
+              <li>Managed full project lifecycle — from client requirements to final delivery</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="edu-strip">
+          <span class="edu-icon">🎓</span>
+          <div>
+            <div class="edu-name">The King's University · Edmonton</div>
+            <div class="edu-detail">BSc Computer Science &nbsp;·&nbsp; GPA 3.46 / 4.0 &nbsp;·&nbsp; Jan 2023 – Dec 2026</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SCENE 4 — Skills  (52% → 67%)
+         Camera slows, environment brightens
+         ============================================= -->
+    <section id="section-skills" class="scroll-section">
+      <div class="panel panel--skills">
+        <div class="panel-eyebrow">Arsenal</div>
+        <h2 class="panel-title">Skills</h2>
+
+        <div class="skills-grid">
+          <div class="skill-group">
+            <div class="skill-label">Languages</div>
+            <div class="skill-tags">
+              <span>TypeScript</span><span>JavaScript</span><span>Java</span>
+              <span>C++</span><span>C#</span><span>SQL</span>
+              <span>HTML5</span><span>CSS3</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-label">Backend &amp; Databases</div>
+            <div class="skill-tags">
+              <span>Node.js</span><span>Express</span><span>PostgreSQL</span>
+              <span>Firebase</span><span>Prisma ORM</span><span>JWT</span>
+              <span>REST APIs</span><span>Gemini API</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-label">Frameworks &amp; Tools</div>
+            <div class="skill-tags">
+              <span>React Native</span><span>Docker</span><span>Git</span>
+              <span>Linux</span><span>Expo</span><span>OpenGL/GLUT</span>
+              <span>JavaFX</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-label">Practices</div>
+            <div class="skill-tags">
+              <span>JUnit / TDD</span><span>Agile</span><span>OOP</span>
+              <span>Design Patterns</span><span>Postman</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SCENE 5 — Projects  (69% → 84%)
+         KEY SECTION — camera slows, slight push
+         ============================================= -->
+    <section id="section-projects" class="scroll-section">
+      <div class="panel panel--wide">
+        <div class="panel-eyebrow">What I've Built</div>
+        <h2 class="panel-title">Projects</h2>
+
+        <div class="projects-grid">
+          <div class="project-card project-card--featured">
+            <div class="project-badge">🏆 Hackathon · 40 hours</div>
+            <div class="project-name">RapidReach</div>
+            <div class="project-desc">
+              AI emergency response mobile app connecting people in crisis with
+              nearby trained first responders. Live GPS sync, real-time audio
+              triage via Gemini AI, and step-by-step first aid guidance.
+            </div>
+            <div class="project-stack">
+              <span>React Native</span><span>Firebase</span>
+              <span>Gemini API</span><span>Expo</span>
+            </div>
+            <a href="https://devpost.com/software/first-five" target="_blank"
+               rel="noopener" class="project-link">View on Devpost ↗</a>
+          </div>
+
+          <div class="project-card">
+            <div class="project-name">CodeBounty</div>
+            <div class="project-desc">
+              Peer-to-peer bug bounty platform with GitHub OAuth, JWT
+              role-based access control, normalized relational schema, and
+              full Docker containerized deployment.
+            </div>
+            <div class="project-stack">
+              <span>Node.js</span><span>TypeScript</span>
+              <span>PostgreSQL</span><span>Docker</span>
+            </div>
+            <a href="https://github.com/arthsaAr/CodeBounty" target="_blank"
+               rel="noopener" class="project-link">GitHub ↗</a>
+          </div>
+
+          <div class="project-card">
+            <div class="project-name">Chess Engine</div>
+            <div class="project-desc">
+              Full-featured chess app with 10-level minimax AI, complete move
+              validation, and comprehensive JUnit test suite covering all core
+              engine components.
+            </div>
+            <div class="project-stack">
+              <span>Java</span><span>OOP</span>
+              <span>Minimax</span><span>JUnit</span>
+            </div>
+            <a href="https://github.com/arthsaAr/Chess-game-with-AI.git"
+               target="_blank" rel="noopener" class="project-link">GitHub ↗</a>
+          </div>
+
+          <div class="project-card">
+            <div class="project-name">Particle Simulation</div>
+            <div class="project-desc">
+              Real-time gravity and black hole attraction system running 500+
+              particles at 60 FPS via GL_POINTS rendering and efficient memory
+              reuse.
+            </div>
+            <div class="project-stack">
+              <span>C++</span><span>OpenGL</span><span>GLUT</span>
+            </div>
+            <a href="https://github.com/arthsaAr/Particle-Simulation-OpenGL-GLUT"
+               target="_blank" rel="noopener" class="project-link">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SCENE 6 — Contact  (84% → 95%)
+         Camera tilts slightly upward, world is bright
+         ============================================= -->
+    <section id="section-contact" class="scroll-section">
+      <div class="panel panel--contact">
+        <div class="panel-eyebrow">Let's Work Together</div>
+        <h2 class="panel-title">Contact</h2>
+        <p class="contact-sub">
+          Open to backend and full-stack internship opportunities —
+          Summer / Fall 2026.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:your@email.com" class="contact-btn contact-btn--primary">
+            your@email.com
+          </a>
+          <a href="https://github.com/arthsaAr" target="_blank"
+             rel="noopener" class="contact-btn">GitHub</a>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank"
+             rel="noopener" class="contact-btn">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================
+         SCENE 7 — Final Frame  (96% → 100%)
+         Camera elevated, looking back at the world
+         ============================================= -->
+    <div id="section-final" class="scroll-section final-section">
+      <div class="final-content">
+        <div class="final-line">Thank you for visiting</div>
+        <div class="final-name">Raashtra KC</div>
+        <div class="final-sub">
+          <a href="https://github.com/arthsaAr" target="_blank" rel="noopener">GitHub</a>
+          <span class="final-dot">·</span>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
+          <span class="final-dot">·</span>
+          <a href="mailto:your@email.com">Email</a>
+        </div>
+      </div>
     </div>
 
     <script type="module" src="/src/main.js"></script>
