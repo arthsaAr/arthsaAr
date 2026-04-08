@@ -11,21 +11,24 @@
 <!-- <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"> -->
 
 ## 📊 Skill Mastery Level
-| Skill                        | Mastery |
-|------------------------------|---------|
-| ☕ Java                      | ▓▓▓▓▓▓▓▓░ 85% |
-| 🟦 TypeScript / JavaScript   | ▓▓▓▓▓▓▓░░ 80% |
-| 🐙 Git / GitHub              | ▓▓▓▓▓▓▓▓░ 85% |
-| 🌐 React Native              | ▓▓▓▓▓▓▓░░ 75% |
-| 🛠 Node.js / Express         | ▓▓▓▓▓▓▓░░ 75% |
-| 🗄 PostgreSQL / MySQL        | ▓▓▓▓▓▓░░░ 70% |
-| 🔥 Firebase / Firestore      | ▓▓▓▓▓▓░░░ 70% |
-| 🐳 Docker                    | ▓▓▓▓▓▓░░░ 65% |
-| 🔐 JWT / OAuth               | ▓▓▓▓▓▓░░░ 65% |
-| 💻 C++ / C#                  | ▓▓▓▓▓▓░░░ 65% |
-| 🐧 Linux                     | ▓▓▓▓▓░░░░ 60% |
-| 🧩 HTML / CSS                | ▓▓▓▓▓▓░░░ 70% |
-| ⚙ Software Engineering       | ▓▓▓▓▓▓▓░░ 75% |
+| Skill                               | Mastery |
+|-------------------------------------|---------|
+| ☕ Java                             | ▓▓▓▓▓▓▓▓░ 85% |
+| 🟦 TypeScript / JavaScript          | ▓▓▓▓▓▓▓░░ 80% |
+| 🐙 Git / GitHub                     | ▓▓▓▓▓▓▓▓░ 85% |
+| 🔗 REST APIs & Backend Development  | ▓▓▓▓▓▓▓░░ 80% |
+| 🌐 React Native                     | ▓▓▓▓▓▓▓░░ 75% |
+| 🛠 Node.js / Express                | ▓▓▓▓▓▓▓░░ 75% |
+| ⚙ Software Engineering (OOP, SDLC)  | ▓▓▓▓▓▓▓░░ 75% |
+| 🗄 PostgreSQL / MySQL (SQL)         | ▓▓▓▓▓▓░░░ 70% |
+| 🐧 Linux                            | ▓▓▓▓▓▓░░░ 70% |
+| 🔥 Firebase / Firestore             | ▓▓▓▓▓▓░░░ 70% |
+| 🎨 Figma (UI/UX Design)             | ▓▓▓▓▓▓░░░ 70% |
+| 🤖 AI Integration                   | ▓▓▓▓▓▓░░░ 70% |
+| 🧩 HTML / CSS                       | ▓▓▓▓▓▓░░░ 70% |
+| 🐳 Docker                           | ▓▓▓▓▓▓░░░ 65% |
+| 🔐 Authentication (JWT / Firebase)  | ▓▓▓▓▓▓░░░ 65% |
+| 💻 C# (Unity) / C++                 | ▓▓▓▓▓▓░░░ 65% |
 <!-- ## 📊 Skill Mastery Level
 | Skill                  | Mastery |
 |-------------------------|---------|
