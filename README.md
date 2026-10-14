@@ -91,10 +91,10 @@
 </p> -->
 
 <p align="center">
-  <a href="mailto:Contact.raashtra@gmail.com">
+  <a href="mailto:Contact.raashtra@gmail.com" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/Email-Contact.raashtra%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
   </a>
-  <a href="https://www.linkedin.com/in/raashtra" target="_blank">
+  <a href="https://www.linkedin.com/in/raashtra" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/LinkedIn-Raashtra-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
   </a>
 </p>
